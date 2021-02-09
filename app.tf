@@ -32,7 +32,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   size                = "Standard_D1_v2"
   admin_username      = "adminuser"
   network_interface_ids = [
-    azurerm_network_interface.example,
+    azurerm_network_interface.example.id,
    ]
   
 

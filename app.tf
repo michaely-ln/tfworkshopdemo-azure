@@ -29,7 +29,7 @@ resource "azurerm_linux_virtual_machine" "example" {
   resource_group_name = azurerm_resource_group.app_dev_rg_test_01.name
   location            = azurerm_resource_group.app_dev_rg_test_01.location
   count               = 1
-  size                = "Standard_A1"
+  size                = "Standard_A3"
   admin_username      = "adminuser"
   network_interface_ids = [
     azurerm_network_interface.example.id,

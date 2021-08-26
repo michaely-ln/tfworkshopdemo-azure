@@ -13,6 +13,7 @@ resource "azurerm_subnet" "example" {
 }
 
 resource "azurerm_network_interface" "example" {
+  count               = var.instances
   name                = "example-nic"
   location            = azurerm_resource_group.app_dev_rg_test_01.location
   resource_group_name = azurerm_resource_group.app_dev_rg_test_01.name
@@ -28,12 +29,10 @@ resource "azurerm_linux_virtual_machine" "example" {
   name                = "example-machine-${count.index}"
   resource_group_name = azurerm_resource_group.app_dev_rg_test_01.name
   location            = azurerm_resource_group.app_dev_rg_test_01.location
-  count               = 1
+  count               = var.instances
   size                = "Standard_A3"
   admin_username      = "adminuser"
-  network_interface_ids = [
-    azurerm_network_interface.example.id,
-   ]
+  network_interface_ids = [element(azurerm_network_interface.example.*.id, count.index)] 
   
 
   admin_ssh_key {

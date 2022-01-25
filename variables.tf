@@ -1,4 +1,4 @@
 variable "instances" {
   description = "The number of instances"
-  default     = 3
+  default     = 1
 }

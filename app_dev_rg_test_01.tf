@@ -3,7 +3,7 @@ resource "azurerm_resource_group" "app_dev_rg_test_01" {
   location = "East US"
 }
 
-
+/**
 
 module "network" {
   source              = "Azure/network/azurerm"
@@ -25,3 +25,4 @@ module "network" {
 
   depends_on = [azurerm_resource_group.app_dev_rg_test_01]
 }
+**/

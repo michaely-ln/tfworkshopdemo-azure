@@ -12,6 +12,13 @@ resource "azurerm_subnet" "example" {
   address_prefixes     = ["10.0.2.0/24"]
 }
 
+resource "azurerm_subnet" "example2" {
+  name                 = "internal"
+  resource_group_name  = azurerm_resource_group.app_dev_rg_test_01.name
+  virtual_network_name = azurerm_virtual_network.example.name
+  address_prefixes     = ["10.0.3.0/24"]
+}
+
 resource "azurerm_network_interface" "example" {
   count               = var.instances
   name                = "example-nic"

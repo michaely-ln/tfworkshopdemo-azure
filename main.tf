@@ -13,7 +13,7 @@ resource "azurerm_subnet" "example" {
 }
 
 resource "azurerm_subnet" "example2" {
-  name                 = "internal"
+  name                 = "internal2"
   resource_group_name  = azurerm_resource_group.app_dev_rg_test_01.name
   virtual_network_name = azurerm_virtual_network.example.name
   address_prefixes     = ["10.0.3.0/24"]

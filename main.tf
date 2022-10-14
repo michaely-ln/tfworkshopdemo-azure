@@ -24,32 +24,3 @@ resource "azurerm_network_interface" "example" {
     private_ip_address_allocation = "Dynamic"
   }
 }
-
-resource "azurerm_linux_virtual_machine" "example" {
-  name                = "example-machine-${count.index}"
-  resource_group_name = azurerm_resource_group.app_dev_rg_test_01.name
-  location            = azurerm_resource_group.app_dev_rg_test_01.location
-  count               = var.instances
-  size                = "Standard_A1"
-  #size                = "Standard_H16m"
-  admin_username      = "adminuser"
-  network_interface_ids = [element(azurerm_network_interface.example.*.id, count.index)] 
-  
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("./pubkey/id_rsa.pub")
-  }
-
-  os_disk {
-    caching              = "ReadWrite"
-    storage_account_type = "Standard_LRS"
-  }
-
-  source_image_reference {
-    publisher = "Canonical"
-    offer     = "UbuntuServer"
-    sku       = "16.04-LTS"
-    version   = "latest"
-  }
-}
